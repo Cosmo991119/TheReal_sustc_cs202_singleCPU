@@ -23,7 +23,7 @@
 module cpu_tb();
 reg clk;
 reg rst;
-reg[23:0] switch_in=24'h000000;
+reg[23:0] switch_in=24'b110_00000_1111_0000_0000_0000;
 wire[23:0] led_out;
 cpu c(clk,rst,switch_in,led_out);
 

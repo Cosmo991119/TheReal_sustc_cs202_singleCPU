@@ -36,7 +36,7 @@ output[31:0] addr_out;
 // address to memory 
 input[31:0] m_rdata; 
 // data read from memory 
-input[15:0] io_rdata; 
+input[31:0] io_rdata; 
 // data read from io,16 bits 
 output reg[31:0] r_wdata; 
 // data to idecode32(register file) 
@@ -52,7 +52,7 @@ assign addr_out= addr_in;
  
 always @* begin
     if(ioRead)// While the data is from io, it should be the lower 16bit of r_wdata
-        r_wdata = io_rdata;
+        r_wdata = io_rdata[31:0];
     else if(mRead) // The data wirte to register file may be from memory or io. 
         r_wdata=m_rdata;
     else

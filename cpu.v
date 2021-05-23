@@ -178,7 +178,7 @@ wire[31:0] write_data;
 wire[31:0] addr_out;
 wire[31:0] r_wdata;
 wire[31:0] m_rdata;
-wire[15:0] io_rdata;
+wire[31:0] io_rdata;
 
 MemoryOrIO memory_or_io(
     addr_out,//address
@@ -208,7 +208,7 @@ MemoryOrIO memory_or_io(
          LEDCtrl,
          
          led_addr,
-         write_data[15:0],
+         write_data,
          led_out
      );
      
@@ -217,9 +217,9 @@ MemoryOrIO memory_or_io(
      switchs switchs_inst(
          clock,
          reset,
+         IORead,
          SwitchCtrl,
          switch_adrr,
-         IORead,
          io_rdata,
          switch_in
      );

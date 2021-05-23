@@ -65,10 +65,10 @@ module control32plus(
     wire sw=(Opcode==6'b10_1011)?1'b1:1'b0;
     
     
-    assign MemWrite=(sw && (Alu_resultHigh[21:0]==22'h3FFFFF))?1'b1:1'b0;
-    assign MemRead=(lw &&(Alu_resultHigh[21:0]==22'h3FFFFF) );
-    assign IORead=(lw &&(Alu_resultHigh[21:0]!=22'h3FFFFF) );//guess
-    assign IOWrite=(sw &&(Alu_resultHigh[21:0]!=22'h3FFFFF) );
+    assign MemWrite=(sw && (Alu_resultHigh[21:0]!=22'h3FFFFF))?1'b1:1'b0;
+    assign MemRead=(lw &&(Alu_resultHigh[21:0]!=22'h3FFFFF) );
+    assign IORead=(lw &&(Alu_resultHigh[21:0]==22'h3FFFFF) );//guess
+    assign IOWrite=(sw &&(Alu_resultHigh[21:0]==22'h3FFFFF) );
     
     assign RegWrite=(R_format||lw||Jal||I_format)&& !(Jr); 
     assign ALUOp={(R_format||I_format),(Branch || nBranch)};
